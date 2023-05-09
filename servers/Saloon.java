@@ -1,4 +1,4 @@
 package servers;
 
-public class Saloon {
+public class Saloon extends Category{
 }
