@@ -96,7 +96,7 @@ public class Home {
         }
     }
 
-    private static void setExit(){
+    private static void set_exit(){
         // si l'entrée du user est égale à "EXIT" alors on return vers le switch plus haut; exception ?
     }
 }
