@@ -13,7 +13,7 @@ public class Home {
 
     private static int chat_or_faq(String name) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("You can select the " + name + "type saloon :\n(1) Chatting\n(2) FAQ\n(3) Return\nYour choice: ");
+        System.out.print("You can select the " + name + " type saloon:\n(1) Chatting\n(2) FAQ\n(3) Return\nYour choice: ");
         // gérer les exceptions lettres etc
         return Integer.parseInt(scanner.nextLine());
     }
