@@ -3,13 +3,55 @@ package home;
 import servers.Category;
 import servers.Saloon;
 import servers.Server;
-import servers.Under_saloon;
+import servers.Upper_saloon;
 import user.User;
 
 import java.util.Scanner;
 
 public class Home {
     private static boolean exit;
+
+    private static int chat_or_faq(String name) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("You can select the " + name + "type saloon :\n(1) Chatting\n(2) FAQ\n(3) Return\nYour choice: ");
+        // gérer les exceptions lettres etc
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static int web_category_choice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("You can select a category:\n(1) Front-end\n(2) Back-end\n(3) Return\nYour choice: ");
+        // gérer les exceptions lettres etc
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static int upper_front_saloon_choice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("You can select a web front saloon:\n(1) HTML\n(2) CSS\n(3) JS_front\n(4) Return\nYour choice: ");
+        // gérer les exceptions lettres etc
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static int upper_back_saloon_choice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("You can select a web back saloon:\n(1) Golang\n(2) JS_back\n(3) MySQL\n(4) PHP\n(5) Return\nYour choice: ");
+        // gérer les exceptions lettres etc
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static int poo_category_choice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("You can select a category:\n(1) C++\n(2) Java\n(3) Return\nYour choice: ");
+        // gérer les exceptions lettres etc
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static int app_category_choice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("You can select a category:\n(1) C#\n(2) Python\n(3) C\n(4) Return\nYour choice: ");
+        // gérer les exceptions lettres etc
+        return Integer.parseInt(scanner.nextLine());
+    }
 
     public static void home() {
         //----------SERVERS-------------------------
@@ -31,17 +73,40 @@ public class Home {
         Category python = new Category("Python");
         Category c_language = new Category("C");
 
+        //---------UPPER-SALOON---------------------
+        //---------only for WEB---------------------
+        //(FRONT)
+        Upper_saloon html = new Upper_saloon("HTML");
+        Upper_saloon css = new Upper_saloon("CSS");
+        Upper_saloon js_front = new Upper_saloon("JavaScript-FRONT");
+        //(BACK)
+        Upper_saloon golang = new Upper_saloon("Golang");
+        Upper_saloon js_back = new Upper_saloon("JavaScript-BACK");
+        Upper_saloon my_sql = new Upper_saloon("MySQL");
+        Upper_saloon php = new Upper_saloon("PHP");
+
         //---------SALOONS--------------------------
         //---------for WEB--------------------------
-        //(FRONT)
-        Saloon html = new Saloon("HTML");
-        Saloon css = new Saloon("CSS");
-        Saloon js_front = new Saloon("JavaScript-FRONT");
-        //(BACK)
-        Saloon golang = new Saloon("Golang");
-        Saloon js_back = new Saloon("JavaScript-BACK");
-        Saloon my_sql = new Saloon("MySQL");
-        Saloon php = new Saloon("PHP");
+        Saloon html_chatting = new Saloon("HTML-Chatting");
+        Saloon html_faq = new Saloon("HTML-FAQ");
+
+        Saloon css_chatting = new Saloon("CSS-Chatting");
+        Saloon css_faq = new Saloon("CSS-FAQ");
+
+        Saloon js_front_chatting = new Saloon("JS Front-Chatting");
+        Saloon js_front_faq = new Saloon("JS Front-FAQ");
+
+        Saloon go_chatting = new Saloon("GO-Chatting");
+        Saloon go_faq = new Saloon("GO-FAQ");
+
+        Saloon js_back_chatting = new Saloon("JS Back-Chatting");
+        Saloon js_back_faq = new Saloon("JS Back-FAQ");
+
+        Saloon mysql_chatting = new Saloon("MYSQL-Chatting");
+        Saloon mysql_faq = new Saloon("MYSQL-FAQ");
+
+        Saloon php_chatting = new Saloon("PHP-Chatting");
+        Saloon php_faq = new Saloon("PHP-FAQ");
 
         //----------for POO--------------------------
         Saloon cpp_chatting = new Saloon("CPP-Chatting");
@@ -60,29 +125,6 @@ public class Home {
         Saloon c_chatting = new Saloon("C-Chatting");
         Saloon c_faq = new Saloon("C-FAQ");
 
-        //---------UNDER SALOONS---------------------
-        Under_saloon html_chatting = new Under_saloon("HTML-Chatting");
-        Under_saloon html_faq = new Under_saloon("HTML-FAQ");
-
-        Under_saloon css_chatting = new Under_saloon("CSS-Chatting");
-        Under_saloon css_faq = new Under_saloon("CSS-FAQ");
-
-        Under_saloon js_front_chatting = new Under_saloon("JS Front-Chatting");
-        Under_saloon js_front_faq = new Under_saloon("JS Front-FAQ");
-
-        Under_saloon go_chatting = new Under_saloon("GO-Chatting");
-        Under_saloon go_faq = new Under_saloon("GO-FAQ");
-
-        Under_saloon js_back_chatting = new Under_saloon("JS Back-Chatting");
-        Under_saloon js_back_faq = new Under_saloon("JS Back-FAQ");
-
-        Under_saloon mysql_chatting = new Under_saloon("MYSQL-Chatting");
-        Under_saloon mysql_faq = new Under_saloon("MYSQL-FAQ");
-
-        Under_saloon php_chatting = new Under_saloon("PHP-Chatting");
-        Under_saloon php_faq = new Under_saloon("PHP-FAQ");
-
-
         // à traduire
         System.out.println("--Bienvenue sur DisCode, le discord dédié aux passionnés de codage informatique.\nUne fois connecté, vous pourrez intégrer des salons, triés par catégories, eux-mêmes situés sur un serveur pour pouvoir lire des informations ou en demander/partager.--\n");
         // demande à l'utilisateur de rentrer son nom
@@ -96,6 +138,135 @@ public class Home {
         System.out.println("See you soon! :)");
     }
 
+    private static void web_choice() {
+        // gérer les exceptions lettres etc
+        switch (web_category_choice()) {
+            case 1:
+                // gérer les exceptions lettres etc
+                switch (upper_front_saloon_choice()) {
+                    case 1:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("HTML") == 1) {
+                            // redirection vers le saloon html_chatting_saloon
+                        } else {
+                            // redirection vers le saloon html_faq_saloon
+                        }
+                        break;
+                    case 2:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("CSS") == 1) {
+                            // redirection vers le saloon css_chatting_saloon
+                        } else {
+                            // redirection vers le saloon css_faq_saloon
+                        }
+                        break;
+                    case 3:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("JS_front") == 1) {
+                            // redirection vers le saloon js_front_chatting_saloon
+                        } else {
+                            // redirection vers le saloon js_front_faq_saloon
+                        }
+                        break;
+                    case 4:
+                        // Return
+                        break;
+                }
+                break;
+            case 2:
+                switch (upper_back_saloon_choice()) {
+                    case 1:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("Golang") == 1) {
+                            // redirection vers le saloon Golang_chatting_saloon
+                        } else {
+                            // redirection vers le saloon Golang_faq_saloon
+                        }
+                        break;
+                    case 2:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("JS_back") == 1) {
+                            // redirection vers le saloon JS_back_chatting_saloon
+                        } else {
+                            // redirection vers le saloon JS_back_faq_saloon
+                        }
+                        break;
+                    case 3:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("MySQL") == 1) {
+                            // redirection vers le saloon MySQL_chatting_saloon
+                        } else {
+                            // redirection vers le saloon MySQL_faq_saloon
+                        }
+                        break;
+                    case 4:
+                        // gérer les exceptions lettres etc
+                        if (chat_or_faq("PHP") == 1) {
+                            // redirection vers le saloon PHP_chatting_saloon
+                        } else {
+                            // redirection vers le saloon PHP_faq_saloon
+                        }
+                        break;
+                    case 5:
+                        // Return
+                        break;
+                }
+                break;
+        }
+    }
+
+    private static void poo_choice() {
+        switch (poo_category_choice()) {
+            //exceptions
+            case 1:
+                if (chat_or_faq("C++") == 1) {
+                    //redirection vers  c++ chatting
+                } else {
+                    //redirection vers c++ faq
+                }
+                break;
+            case 2:
+                if (chat_or_faq("Java") == 1) {
+                    //redirection vers  java chatting
+                } else {
+                    //redirection vers java faq
+                }
+                break;
+            case 3:
+                // Return
+                break;
+        }
+    }
+
+    private static void app_choice() {
+        switch (app_category_choice()) {
+            case 1:
+                if (chat_or_faq("C#") == 1) {
+                    //redirection vers C# chatting
+                } else {
+                    // redirection vers c# faq
+                }
+                break;
+            case 2:
+                if (chat_or_faq("Python") == 1) {
+                    //redirection vers Python chatting
+                } else {
+                    // redirection vers Python faq
+                }
+                break;
+            case 3:
+                if (chat_or_faq("C") == 1) {
+                    //redirection vers C chatting
+                } else {
+                    // redirection vers c faq
+                }
+                break;
+            case 4:
+                // Return
+                break;
+        }
+    }
+
     private static void server_choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a server between:\n(1) Web\n(2) POO\n(3) Application\n(4) Exit\nYour choice: ");
@@ -103,28 +274,15 @@ public class Home {
         int server_choice = Integer.parseInt(scanner.nextLine());
         switch (server_choice) {
             case 1:
-                // Exception, si (category_choice() == 3) -> break;
-                if (category_choice() == 1) {
-                    saloon_choice(1);
-                } else {
-                    saloon_choice(2);
-                }
+                web_choice();
                 break;
             case 2:
-                // Exception, si (category_choice() == 3) -> break;
-                if (category_choice() == 1) {
-                    saloon_choice(3);
-                } else {
-                    saloon_choice(4);
-                }
+                // Exception, si (category_choice() == 3) -> break; etc
+                poo_choice();
                 break;
             case 3:
                 // Exception, si (category_choice() == 3) -> break;
-                if (category_choice() == 1) {
-                    saloon_choice(5);
-                } else {
-                    saloon_choice(6);
-                }
+                app_choice();
                 break;
             case 4:
                 exit = true;
@@ -132,17 +290,10 @@ public class Home {
         }
     }
 
-    private static int category_choice() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("You can select a category:\n(1) Front-end\n(2) Back-end\n(3) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
-    }
-
     private static void saloon_choice(int choice) {
         switch (choice) {
             case 1:
-                System.out.println("salon beginner, front (tous les langages simples en front)");
+                // choisir un langage en front
                 // accès au salon spécifique
                 // dans salon spécifique (appeler/configurer setExit)
                 break;
@@ -171,7 +322,7 @@ public class Home {
         }
     }
 
-    private static void set_exit(){
-        // si l'entrée du user est égale à "EXIT" alors on return vers le switch plus haut; exception ?
+    private static void set_exit() {
+        // si l'entrée du user est égale à "exit" alors on return vers le switch plus haut; exception ?
     }
 }
