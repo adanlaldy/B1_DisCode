@@ -161,26 +161,21 @@ public class Home {
         AppClass appClass = new AppClass();
         switch (choice) {
             case 1:
-                System.out.println("Wellcome to Front-End chat ! Enjoy !");
+                System.out.println("Welcome to the Front-End chat! Enjoy!");
                 Scanner scanner = new Scanner(System.in);
-                while (!Objects.equals(scanner.nextLine(), "exit")) {
-                    rootLogger.info("Message dans " + web_server.getName() + "->" + html.getName() + "->" + html_chatting.getName() +" : " + scanner.nextLine());
+                String userInput;
+
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    rootLogger.info("Message in " + web_server.getName() + "->" + html.getName() + "->" + html_chatting.getName() + ": \"" + userInput + "\"");
                     try {
-                        html_chatting.add_content(scanner.nextLine());
+                        html_chatting.add_content(userInput);
                     } catch (NullPointerException ignored) {
 
                     } finally {
                         System.out.print("");
                     }
-
                 }
                 scanner.close();
-
-
-
-                // accès au salon spécifique
-                // dans salon spécifique (appeler/configurer setExit)
-
                 break;
             case 2:
                 LogsReader.readLogs("logs.txt");
