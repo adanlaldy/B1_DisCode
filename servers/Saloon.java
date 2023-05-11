@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Saloon extends Category{
-
     private String name;
-    private List<String> chatting;
+    public List<String> chatting;
     public Saloon(String name) {
         super(name);
         this.name = name;
@@ -15,9 +14,5 @@ public class Saloon extends Category{
 
     public void add_content(String content){
         chatting.add(content);
-    }
-
-    public void print_content(){
-        System.out.println(chatting);
     }
 }

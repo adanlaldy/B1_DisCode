@@ -1,20 +1,30 @@
 package home;
 
+import logs.AppClass;
+import logs.LogsReader;
+import logs.MyLogHandler;
 import servers.Category;
 import servers.Saloon;
 import servers.Server;
 import servers.Under_saloon;
 import user.User;
 
+
+import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
+
+import java.util.logging.Handler;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 
 public class Home {
     private static boolean exit;
 
-    public static void home() {
 
+    public static void home() {
 
         // à traduire
         System.out.println("--Bienvenue sur DisCode, le discord dédié aux passionnés de codage informatique.\nUne fois connecté, vous pourrez intégrer des salons, triés par catégories, eux-mêmes situés sur un serveur pour pouvoir lire des informations ou en demander/partager.--\n");
@@ -27,8 +37,6 @@ public class Home {
             server_choice();
         }
         System.out.println("See you soon! :]");
-
-
     }
 
     private static void server_choice() {
@@ -145,26 +153,37 @@ public class Home {
 
         Under_saloon php_chatting = new Under_saloon("PHP-Chatting");
         Under_saloon php_faq = new Under_saloon("PHP-FAQ");
+
+        LogManager.getLogManager().reset();
+        Logger rootLogger = LogManager.getLogManager().getLogger("");
+
+        rootLogger.addHandler(new MyLogHandler());
+        AppClass appClass = new AppClass();
         switch (choice) {
             case 1:
                 System.out.println("Wellcome to Front-End chat ! Enjoy !");
                 Scanner scanner = new Scanner(System.in);
-                while (!Objects.equals(scanner.nextLine(), "exit")){
+                while (!Objects.equals(scanner.nextLine(), "exit")) {
+                    rootLogger.info("Message dans " + web_server.getName() + "->" + html.getName() + "->" + html_chatting.getName() +" : " + scanner.nextLine());
                     try {
                         html_chatting.add_content(scanner.nextLine());
-                        html_chatting.print_content();
-                    } catch (NullPointerException e){
+                    } catch (NullPointerException ignored) {
 
-                    }finally {
+                    } finally {
                         System.out.print("");
                     }
 
                 }
+                scanner.close();
+
+
 
                 // accès au salon spécifique
                 // dans salon spécifique (appeler/configurer setExit)
+
                 break;
             case 2:
+                LogsReader.readLogs("logs.txt");
                 //salon beginner, back (tous les langages simples en back)
                 // accès au salon spécifique
                 break;
@@ -187,9 +206,5 @@ public class Home {
                 // accès au salon spécifique
                 break;
         }
-    }
-
-    private static void set_exit(){
-        // si l'entrée du user est égale à "EXIT" alors on return vers le switch plus haut; exception ?
     }
 }
