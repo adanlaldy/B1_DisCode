@@ -33,8 +33,6 @@ public class MyLogHandler extends Handler {
                 .append(record.getMessage());
         String log = sb.toString();
 
-        System.out.println(log); // Affiche également le log sur la sortie standard
-
         if (fileHandler != null) {
             fileHandler.publish(record);
         }

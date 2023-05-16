@@ -1,6 +1,5 @@
 package home;
 
-import logs.AppClass;
 import logs.LogsReader;
 import logs.MyLogHandler;
 import servers.Category;
@@ -10,18 +9,18 @@ import servers.Upper_saloon;
 import user.User;
 
 
-import java.io.IOException;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import java.util.logging.Handler;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
 public class Home {
     private static boolean exit;
+    private static final List<String> chatting_HTML = new ArrayList<>();
+
 
     private static int chat_or_faq(String name) {
         Scanner scanner = new Scanner(System.in);
@@ -133,7 +132,7 @@ public class Home {
                         }
                         break;
                     case 4:
-                        // Return
+                        web_category_choice();
                         break;
                 }
                 break;
@@ -172,9 +171,10 @@ public class Home {
                         }
                         break;
                     case 5:
-                        // Return
+                        web_category_choice();
                         break;
                 }
+                web_choice();
                 break;
         }
     }
@@ -234,7 +234,7 @@ public class Home {
     private static void web_saloon_choice(int choice) {
         Server web_server = new Server("Web");
 
-        //<-----------CATEGORIES PAS UTILISEE---------->
+        //<-----------CATEGORIES NOT USEd---------->
         Category front_end = new Category("Front End");
         Category back_end = new Category("Back End");
         //<<------------------------------------------->
@@ -261,33 +261,28 @@ public class Home {
         Saloon php_chatting = new Saloon("PHP-Chatting");
         Saloon php_faq = new Saloon("PHP-FAQ");
 
-        //<--------JE SAIS PAS------------------------------->
+        //<--------SET UP FOR LOGS------------------------------->
         LogManager.getLogManager().reset();
         Logger rootLogger = LogManager.getLogManager().getLogger("");
         rootLogger.addHandler(new MyLogHandler());
-        AppClass appClass = new AppClass();
-        //<--------------CE QUE C'EST----------------------------->
+        //<------------------------------------------------------>
 
         switch (choice) {
             case 1:
-                System.out.println("Welcome to the Front-End chat! Enjoy!");
+                System.out.println("\nWelcome to the Front-End chat! Enjoy!\n");
+                String result = String.join("", chatting_HTML);
+                System.out.println(result);
                 Scanner scanner = new Scanner(System.in);
                 String userInput;
 
                 while (!(userInput = scanner.nextLine()).equals("exit")) {
-                    rootLogger.info("Message in " + web_server.getName() + "->" + html.getName() + "->" + html_chatting.getName() + ": \"" + userInput + "\"");
-                    try {
-                        html_chatting.add_content(userInput);
-                    } catch (NullPointerException ignored) {
-
-                    } finally {
-                        System.out.print("");
-                    }
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
+                    chatting_HTML.add("\n");
+                    chatting_HTML.add(userInput);
                 }
-                scanner.close();
                 break;
             case 2:
-                //JE SAIS PAS C'EST QUOI
+                //A TESTER POUR L'ADMIN
                 LogsReader.readLogs("logs.txt");
                 break;
             case 3:
