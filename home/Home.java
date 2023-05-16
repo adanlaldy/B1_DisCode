@@ -1,16 +1,17 @@
 package home;
 
-import logs.LogsReader;
 import logs.MyLogHandler;
 import servers.Category;
 import servers.Saloon;
 import servers.Server;
 import servers.Upper_saloon;
+import user.Admin;
 import user.User;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 import java.util.logging.LogManager;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public class Home {
     private static boolean exit;
     private static final List<String> chatting_HTML = new ArrayList<>();
-
+    private static final boolean admin_mode = false;
 
     private static int chat_or_faq(String name) {
         Scanner scanner = new Scanner(System.in);
@@ -104,39 +105,37 @@ public class Home {
     private static void web_choice() {
         // gérer les exceptions lettres etc
         switch (web_category_choice()) {
-            case 1:
+            case 1 -> {
                 // gérer les exceptions lettres etc
                 switch (upper_front_saloon_choice()) {
-                    case 1:
+                    case 1 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("HTML") == 1) {
                             web_saloon_choice(1);
                         } else {
                             web_saloon_choice(2);
                         }
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("CSS") == 1) {
                             web_saloon_choice(3);
                         } else {
                             web_saloon_choice(4);
                         }
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("JS_front") == 1) {
                             web_saloon_choice(5);// redirection vers le saloon js_front_chatting_saloon
                         } else {
                             web_saloon_choice(6);// redirection vers le saloon js_front_faq_saloon
                         }
-                        break;
-                    case 4:
-                        web_category_choice();
-                        break;
+                    }
+                    case 4 -> web_category_choice();
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 switch (upper_back_saloon_choice()) {
                     case 1:
                         // gérer les exceptions lettres etc
@@ -175,7 +174,7 @@ public class Home {
                         break;
                 }
                 web_choice();
-                break;
+            }
         }
     }
 
@@ -281,16 +280,18 @@ public class Home {
                 }
                 Scanner scanner = new Scanner(System.in);
                 String userInput;
-
                 while (!(userInput = scanner.nextLine()).equals("exit")) {
-                    rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
+                    if (Objects.equals(userInput, "!ri")){
+                        System.out.println(User.roleInfo());
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
+                    }
                     chatting_HTML.add("\n");
                     chatting_HTML.add(userInput);
                 }
                 break;
             case 2:
-                //A TESTER POUR L'ADMIN
-                LogsReader.readLogs("logs.txt");
                 break;
             case 3:
                 break;

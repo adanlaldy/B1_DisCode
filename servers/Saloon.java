@@ -9,7 +9,7 @@ public class Saloon extends Category{
     public List<String> chatting;
     public Saloon(String name) {
         super(name);
-        this.name = name;
+        Saloon.name = name;
     }
     public static String getName(){
         return name;
