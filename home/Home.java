@@ -231,7 +231,7 @@ public class Home {
         }
     }
 
-    private static void web_saloon_choice(int choice) {
+    private static <i> void web_saloon_choice(int choice) {
         Server web_server = new Server("Web");
 
         //<-----------CATEGORIES NOT USEd---------->
@@ -269,9 +269,16 @@ public class Home {
 
         switch (choice) {
             case 1:
+                int i = 1;
+                int lastIndex = chatting_HTML.size() - 1;
                 System.out.println("\nWelcome to the Front-End chat! Enjoy!\n");
                 String result = String.join("", chatting_HTML);
                 System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : " + chatting_HTML.get(i));
+                    i++;
+                    i++;
+                }
                 Scanner scanner = new Scanner(System.in);
                 String userInput;
 
