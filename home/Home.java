@@ -1,5 +1,6 @@
 package home;
 
+import exceptions.Only_numbers;
 import logs.AppClass;
 import logs.LogsReader;
 import logs.MyLogHandler;
@@ -11,6 +12,7 @@ import user.User;
 
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -26,48 +28,107 @@ public class Home {
     private static int chat_or_faq(String name) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select the " + name + " type saloon:\n(1) Chatting\n(2) FAQ\n(3) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_3_max(choice);
+            }catch (Only_numbers e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        return choice;
     }
 
     private static int web_category_choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a category:\n(1) Front-end\n(2) Back-end\n(3) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_3_max(choice);
+            }catch (Only_numbers e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        return choice;
     }
 
     private static int upper_front_saloon_choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a web front saloon:\n(1) HTML\n(2) CSS\n(3) JS_front\n(4) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_4_max(choice);
+            }catch (Exception e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        return choice;
     }
 
     private static int upper_back_saloon_choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a web back saloon:\n(1) Golang\n(2) JS_back\n(3) MySQL\n(4) PHP\n(5) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_5_max(choice);
+            }catch (Exception e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        return choice;
     }
 
     private static int poo_category_choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a category:\n(1) C++\n(2) Java\n(3) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_3_max(choice);
+            }catch (Exception e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        return choice;
     }
 
     private static int app_category_choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a category:\n(1) C#\n(2) Python\n(3) C\n(4) Return\nYour choice: ");
-        // gérer les exceptions lettres etc
-        return Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_4_max(choice);
+            }catch (Exception e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        return choice;
     }
 
-    public static void home() {
-        // à traduire
-        System.out.println("--Bienvenue sur DisCode, le discord dédié aux passionnés de codage informatique.\nUne fois connecté, vous pourrez intégrer des salons, triés par catégories, eux-mêmes situés sur un serveur pour pouvoir lire des informations ou en demander/partager.--\n");
+    public static void home() throws Only_numbers {
+        System.out.println("--Welcome to DisCode, the Discord for the dedicated to computer coding enthusiasts.\nOnce connected, you will be able to integrate rooms, sorted by categories, themselves located on a server to be able to read information or request/share it.--\n");
         // demande à l'utilisateur de rentrer son nom
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a name: ");
@@ -79,21 +140,28 @@ public class Home {
         System.out.println("See you soon! :]");
     }
 
-    private static void server_choice() {
+    private static void server_choice() throws Only_numbers {
         Scanner scanner = new Scanner(System.in);
         System.out.print("You can select a server between:\n(1) Web\n(2) POO\n(3) Application\n(4) Exit\nYour choice: ");
-        // gérer les exceptions lettres etc
-        int server_choice = Integer.parseInt(scanner.nextLine());
-        switch (server_choice) {
+        int choice = 0;
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+            try{
+                Only_numbers.check_input_4_max(choice);
+            }catch (Exception e){
+                System.err.println(e);
+            }
+        } else {
+            System.err.println("Error : you have to enter a number");
+        }
+        switch (choice) {
             case 1:
                 web_choice();
                 break;
             case 2:
-                // Exception, si (category_choice() == 3) -> break; etc
                 poo_choice();
                 break;
             case 3:
-                // Exception, si (category_choice() == 3) -> break;
                 app_choice();
                 break;
             case 4:
@@ -102,14 +170,11 @@ public class Home {
         }
     }
 
-    private static void web_choice() {
-        // gérer les exceptions lettres etc
+    private static void web_choice() throws Only_numbers {
         switch (web_category_choice()) {
             case 1:
-                // gérer les exceptions lettres etc
                 switch (upper_front_saloon_choice()) {
                     case 1:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("HTML") == 1) {
                             web_saloon_choice(1);
                         } else {
@@ -117,7 +182,6 @@ public class Home {
                         }
                         break;
                     case 2:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("CSS") == 1) {
                             web_saloon_choice(3);
                         } else {
@@ -125,7 +189,6 @@ public class Home {
                         }
                         break;
                     case 3:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("JS_front") == 1) {
                             web_saloon_choice(5);// redirection vers le saloon js_front_chatting_saloon
                         } else {
@@ -140,7 +203,6 @@ public class Home {
             case 2:
                 switch (upper_back_saloon_choice()) {
                     case 1:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("Golang") == 1) {
                             web_saloon_choice(7);// redirection vers le saloon Golang_chatting_saloon
                         } else {
@@ -148,7 +210,6 @@ public class Home {
                         }
                         break;
                     case 2:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("JS_back") == 1) {
                             web_saloon_choice(9);// redirection vers le saloon JS_back_chatting_saloon
                         } else {
@@ -156,7 +217,6 @@ public class Home {
                         }
                         break;
                     case 3:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("MySQL") == 1) {
                             web_saloon_choice(11);// redirection vers le saloon MySQL_chatting_saloon
                         } else {
@@ -164,7 +224,6 @@ public class Home {
                         }
                         break;
                     case 4:
-                        // gérer les exceptions lettres etc
                         if (chat_or_faq("PHP") == 1) {
                             web_saloon_choice(13);// redirection vers le saloon PHP_chatting_saloon
                         } else {
@@ -179,9 +238,8 @@ public class Home {
         }
     }
 
-    private static void poo_choice() {
+    private static void poo_choice() throws Only_numbers {
         switch (poo_category_choice()) {
-            //exceptions
             case 1:
                 if (chat_or_faq("C++") == 1) {
                     poo_saloon_choice(1);//redirection vers  c++ chatting
@@ -202,7 +260,7 @@ public class Home {
         }
     }
 
-    private static void app_choice() {
+    private static void app_choice() throws Only_numbers {
         switch (app_category_choice()) {
             case 1:
                 if (chat_or_faq("C#") == 1) {
