@@ -57,6 +57,7 @@ public class User {
         command_list.add("- !n : Showing your own name\n");
         command_list.add("- !rn : Renaming yourself\n");
         command_list.add("\n");
+        command_list.add("- exit : Leaving all and back to the server choice");
     }
 
     public static void commands(String input) {

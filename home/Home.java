@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class Home {
 
     // on a pas géré l'exception si on fait juste la commande "entrée" dans le terminal
-    // dès qu'on a le choix entre 1.chat, 2.faq, 3.return, le return ne fonctionne pas : on a essayé de jouer avec le if else, mais on suppose qu'il faut implémenter de nouvelles exceptions
     private static boolean exit;
 
     private static int chat_or_faq(String name) {
@@ -171,24 +170,42 @@ public class Home {
             case 1 -> {
                 switch (upper_front_saloon_choice()) {
                     case 1 -> {
-                        if (chat_or_faq("HTML") == 1) {
-                            web_saloon_choice(1);
-                        } else {
-                            web_saloon_choice(2);
+                        switch (chat_or_faq("HTML")){
+                            case 1 -> {
+                                web_saloon_choice(1);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(2);
+                            }
+                            case 3 -> {
+                                upper_front_saloon_choice();
+                            }
                         }
                     }
                     case 2 -> {
-                        if (chat_or_faq("CSS") == 1) {
-                            web_saloon_choice(3);
-                        } else {
-                            web_saloon_choice(4);
+                        switch (chat_or_faq("CSS")){
+                            case 1 -> {
+                                web_saloon_choice(3);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(4);
+                            }
+                            case 3 -> {
+                                upper_front_saloon_choice();
+                            }
                         }
                     }
                     case 3 -> {
-                        if (chat_or_faq("JS_front") == 1) {
-                            web_saloon_choice(5);
-                        } else {
-                            web_saloon_choice(6);
+                        switch (chat_or_faq("JS_front")){
+                            case 1 -> {
+                                web_saloon_choice(5);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(6);
+                            }
+                            case 3 -> {
+                                upper_front_saloon_choice();
+                            }
                         }
                     }
                     case 4 -> web_category_choice();
@@ -197,31 +214,55 @@ public class Home {
             case 2 -> {
                 switch (upper_back_saloon_choice()) {
                     case 1 -> {
-                        if (chat_or_faq("Golang") == 1) {
-                            web_saloon_choice(7);
-                        } else {
-                            web_saloon_choice(8);
+                        switch (chat_or_faq("Golang")){
+                            case 1 -> {
+                                web_saloon_choice(7);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(8);
+                            }
+                            case 3 -> {
+                                upper_back_saloon_choice();
+                            }
                         }
                     }
                     case 2 -> {
-                        if (chat_or_faq("JS_back") == 1) {
-                            web_saloon_choice(9);
-                        } else {
-                            web_saloon_choice(10);
+                        switch (chat_or_faq("JS_back")){
+                            case 1 -> {
+                                web_saloon_choice(9);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(10);
+                            }
+                            case 3 -> {
+                                upper_back_saloon_choice();
+                            }
                         }
                     }
                     case 3 -> {
-                        if (chat_or_faq("MySQL") == 1) {
-                            web_saloon_choice(11);
-                        } else {
-                            web_saloon_choice(12);
+                        switch (chat_or_faq("MySQL")){
+                            case 1 -> {
+                                web_saloon_choice(11);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(12);
+                            }
+                            case 3 -> {
+                                upper_back_saloon_choice();
+                            }
                         }
                     }
                     case 4 -> {
-                        if (chat_or_faq("PHP") == 1) {
-                            web_saloon_choice(13);
-                        } else {
-                            web_saloon_choice(14);
+                        switch (chat_or_faq("PHP")){
+                            case 1 -> {
+                                web_saloon_choice(13);
+                            }
+                            case 2 -> {
+                                web_saloon_choice(14);
+                            }
+                            case 3 -> {
+                                upper_back_saloon_choice();
+                            }
                         }
                     }
                     case 5 -> web_category_choice();
@@ -234,54 +275,82 @@ public class Home {
     private static void poo_choice() throws Only_numbers {
         switch (poo_category_choice()) {
             case 1:
-                if (chat_or_faq("C++") == 1) {
-                    poo_saloon_choice(1);//redirection vers  c++ chatting
-                } else {
-                    poo_saloon_choice(2);//redirection vers c++ faq
+                switch (chat_or_faq("C++")){
+                    case 1 -> {
+                        poo_saloon_choice(1);//redirection vers  c++ chatting
+                    }
+                    case 2 -> {
+                        poo_saloon_choice(2);//redirection vers c++ faq
+                    }
+                    case 3 -> {
+                        poo_category_choice();
+                    }
                 }
                 break;
             case 2:
-                if (chat_or_faq("Java") == 1) {
-                    poo_saloon_choice(3);//redirection vers  java chatting
-                } else {
-                    poo_saloon_choice(4);//redirection vers java faq
+                switch (chat_or_faq("Java")){
+                    case 1 -> {
+                        poo_saloon_choice(3);//redirection vers  c++ chatting
+                    }
+                    case 2 -> {
+                        poo_saloon_choice(4);//redirection vers c++ faq
+                    }
+                    case 3 -> {
+                        poo_category_choice();
+                    }
                 }
                 break;
             case 3:
-                // Return
+                server_choice();
                 break;
         }
-        poo_category_choice();
     }
 
     private static void app_choice() throws Only_numbers {
         switch (app_category_choice()) {
             case 1:
-                if (chat_or_faq("C#") == 1) {
-                    app_saloon_choice(1);
-                } else {
-                    app_saloon_choice(2);
+                switch (chat_or_faq("C#")){
+                    case 1 -> {
+                        app_saloon_choice(1);
+                    }
+                    case 2 -> {
+                        app_saloon_choice(2);
+                    }
+                    case 3 -> {
+                        app_category_choice();
+                    }
                 }
                 break;
             case 2:
-                if (chat_or_faq("Python") == 1) {
-                    app_saloon_choice(3);
-                } else {
-                    app_saloon_choice(4);
+                switch (chat_or_faq("Python")){
+                    case 1 -> {
+                        app_saloon_choice(3);
+                    }
+                    case 2 -> {
+                        app_saloon_choice(4);
+                    }
+                    case 3 -> {
+                        app_category_choice();
+                    }
                 }
                 break;
             case 3:
-                if (chat_or_faq("C") == 1) {
-                    app_saloon_choice(5);
-                } else {
-                    app_saloon_choice(6);
+                switch (chat_or_faq("C")){
+                    case 1 -> {
+                        app_saloon_choice(5);
+                    }
+                    case 2 -> {
+                        app_saloon_choice(6);
+                    }
+                    case 3 -> {
+                        app_category_choice();
+                    }
                 }
                 break;
             case 4:
-                // Return
+                server_choice();
                 break;
         }
-        app_choice();
     }
 
     private static <i> void web_saloon_choice(int choice) {
