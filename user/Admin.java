@@ -3,6 +3,7 @@ package user;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Admin extends User{
     public Admin(String name) {
@@ -18,5 +19,4 @@ public class Admin extends User{
             e.printStackTrace();
         }
     }
-
 }

@@ -67,8 +67,9 @@ public class Home {
 
     public static void home() {
         // à traduire
-        System.out.println("--Bienvenue sur DisCode, le discord dédié aux passionnés de codage informatique.\nUne fois connecté, vous pourrez intégrer des salons, triés par catégories, eux-mêmes situés sur un serveur pour pouvoir lire des informations ou en demander/partager.--\n");
+        System.out.println("\n\n--Welcome to DisCode! The perfect place for sharing and learning coding!\nOnce connected, you will be able to integrate rooms, sorted by categories, themselves located on a server to be able to read information or request/share it.--\n");
         // demande à l'utilisateur de rentrer son nom
+        System.out.println("/!\\ TIPS : DOn't forget to wright \"!h\" for having the list of commands on DisCode ");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a name: ");
         User user1 = new User(scanner.nextLine());
@@ -137,41 +138,39 @@ public class Home {
             }
             case 2 -> {
                 switch (upper_back_saloon_choice()) {
-                    case 1:
+                    case 1 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("Golang") == 1) {
                             web_saloon_choice(7);// redirection vers le saloon Golang_chatting_saloon
                         } else {
                             web_saloon_choice(8);// redirection vers le saloon Golang_faq_saloon
                         }
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("JS_back") == 1) {
                             web_saloon_choice(9);// redirection vers le saloon JS_back_chatting_saloon
                         } else {
                             web_saloon_choice(10);// redirection vers le saloon JS_back_faq_saloon
                         }
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("MySQL") == 1) {
                             web_saloon_choice(11);// redirection vers le saloon MySQL_chatting_saloon
                         } else {
                             web_saloon_choice(12);// redirection vers le saloon MySQL_faq_saloon
                         }
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("PHP") == 1) {
                             web_saloon_choice(13);// redirection vers le saloon PHP_chatting_saloon
                         } else {
                             web_saloon_choice(14);// redirection vers le saloon PHP_faq_saloon
                         }
-                        break;
-                    case 5:
-                        web_category_choice();
-                        break;
+                    }
+                    case 5 -> web_category_choice();
                 }
                 web_choice();
             }
@@ -281,12 +280,14 @@ public class Home {
                 Scanner scanner = new Scanner(System.in);
                 String userInput;
                 while (!(userInput = scanner.nextLine()).equals("exit")) {
-                    if (Objects.equals(userInput, "!ri")){
-                        System.out.println(User.roleInfo());
-                        rootLogger.info("Command in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
-                    }else {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
                         rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
                     }
+
                     chatting_HTML.add("\n");
                     chatting_HTML.add(userInput);
                 }
