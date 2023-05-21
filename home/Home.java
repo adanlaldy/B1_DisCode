@@ -73,6 +73,9 @@ public class Home {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a name: ");
         User user1 = new User(scanner.nextLine());
+        if (User.getRoleName().equals("god_mod")){
+            System.out.println("This is the github link to pull the source code and get the god_mod ->: https://github.com/adanlaldy/DisCode");
+        }
         System.out.println("Welcome to inside of DisCode !!");
         while (!exit) {
             server_choice();
