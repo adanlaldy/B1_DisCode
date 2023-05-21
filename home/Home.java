@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 public class Home {
     private static boolean exit;
-    private static final List<String> chatting_HTML = new ArrayList<>();
+
     private static final boolean admin_mode = false;
 
     private static int chat_or_faq(String name) {
@@ -131,9 +131,9 @@ public class Home {
                     case 3 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("JS_front") == 1) {
-                            web_saloon_choice(5);// redirection vers le saloon js_front_chatting_saloon
+                            web_saloon_choice(5);
                         } else {
-                            web_saloon_choice(6);// redirection vers le saloon js_front_faq_saloon
+                            web_saloon_choice(6);
                         }
                     }
                     case 4 -> web_category_choice();
@@ -144,33 +144,33 @@ public class Home {
                     case 1 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("Golang") == 1) {
-                            web_saloon_choice(7);// redirection vers le saloon Golang_chatting_saloon
+                            web_saloon_choice(7);
                         } else {
-                            web_saloon_choice(8);// redirection vers le saloon Golang_faq_saloon
+                            web_saloon_choice(8);
                         }
                     }
                     case 2 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("JS_back") == 1) {
-                            web_saloon_choice(9);// redirection vers le saloon JS_back_chatting_saloon
+                            web_saloon_choice(9);
                         } else {
-                            web_saloon_choice(10);// redirection vers le saloon JS_back_faq_saloon
+                            web_saloon_choice(10);
                         }
                     }
                     case 3 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("MySQL") == 1) {
-                            web_saloon_choice(11);// redirection vers le saloon MySQL_chatting_saloon
+                            web_saloon_choice(11);
                         } else {
-                            web_saloon_choice(12);// redirection vers le saloon MySQL_faq_saloon
+                            web_saloon_choice(12);
                         }
                     }
                     case 4 -> {
                         // gérer les exceptions lettres etc
                         if (chat_or_faq("PHP") == 1) {
-                            web_saloon_choice(13);// redirection vers le saloon PHP_chatting_saloon
+                            web_saloon_choice(13);
                         } else {
-                            web_saloon_choice(14);// redirection vers le saloon PHP_faq_saloon
+                            web_saloon_choice(14);
                         }
                     }
                     case 5 -> web_category_choice();
@@ -271,12 +271,12 @@ public class Home {
         switch (choice) {
             case 1:
                 int i = 1;
-                int lastIndex = chatting_HTML.size() - 1;
-                System.out.println("\nWelcome to the Front-End chat! Enjoy!\n");
-                String result = String.join("", chatting_HTML);
+                int lastIndex = html.get_chatting_HTML().size() - 1;
+                System.out.println("\nWelcome to the HTML chat! Enjoy!\n");
+                String result = String.join("", html.get_chatting_HTML());
                 System.out.println(result);
                 while (i <= lastIndex ){
-                    rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : " + chatting_HTML.get(i));
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : " + html.get_chatting_HTML().get(i));
                     i++;
                     i++;
                 }
@@ -290,36 +290,321 @@ public class Home {
                     }else {
                         rootLogger.info("Command in WEB-SERVER->FRONT-END->HTML->HTML-CHATTING : \"" + userInput + "\"");
                     }
-
-                    chatting_HTML.add("\n");
-                    chatting_HTML.add(userInput);
+                    html.set_chatting_HTML("\n");
+                    html.set_chatting_HTML(userInput);
                 }
                 break;
             case 2:
+                i = 1;
+                lastIndex = html.get_faq_HTML().size() - 1;
+                System.out.println("\nWelcome to the HTML FAQ! Enjoy!\n");
+                result = String.join("", html.get_faq_HTML());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-FAQ : " + html.get_faq_HTML().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->FRONT-END->HTML->HTML-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->HTML->HTML-FAQ : \"" + userInput + "\"");
+                    }
+                    html.set_faq_HTML("\n");
+                    html.set_faq_HTML(userInput);
+                }
                 break;
             case 3:
+                i = 1;
+                lastIndex = css.get_chatting_CSS().size() - 1;
+                System.out.println("\nWelcome to the CSS chat! Enjoy!\n");
+                result = String.join("", css.get_chatting_CSS());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->CSS->CSS-CHATTING : " + css.get_chatting_CSS().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->FRONT-END->CSS->CSS-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->CSS->CSS-CHATTING : \"" + userInput + "\"");
+                    }
+                    css.set_chatting_CSS("\n");
+                    css.set_chatting_CSS(userInput);
+                }
                 break;
             case 4:
+                i = 1;
+                lastIndex = css.get_faq_CSS().size() - 1;
+                System.out.println("\nWelcome to the CSS FAQ! Enjoy!\n");
+                result = String.join("", css.get_faq_CSS());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->CSS->CSS-FAQ : " + css.get_faq_CSS().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->FRONT-END->CSS->CSS-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->CSS->CSS-FAQ : \"" + userInput + "\"");
+                    }
+                    css.set_faq_CSS("\n");
+                    css.set_faq_CSS(userInput);
+                }
                 break;
             case 5:
+                i = 1;
+                lastIndex = js_front.get_chatting_JS_front().size() - 1;
+                System.out.println("\nWelcome to the JS_front chat! Enjoy!\n");
+                result = String.join("", js_front.get_chatting_JS_front());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->JS_front->JS_front-CHATTING : " + js_front.get_chatting_JS_front().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->FRONT-END->JS_front->JS_front-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->JS_front->JS_front-CHATTING : \"" + userInput + "\"");
+                    }
+                    js_front.set_chatting_JS_front("\n");
+                    js_front.set_chatting_JS_front(userInput);
+                }
                 break;
             case 6:
+                i = 1;
+                lastIndex = js_front.get_faq_JS_front().size() - 1;
+                System.out.println("\nWelcome to the JS_front FAQ! Enjoy!\n");
+                result = String.join("", js_front.get_faq_JS_front());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->FRONT-END->JS_front->JS_front-FAQ : " + js_front.get_faq_JS_front().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->FRONT-END->JS_front->JS_front-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->FRONT-END->JS_front->JS_front-FAQ : \"" + userInput + "\"");
+                    }
+                    js_front.set_faq_JS_front("\n");
+                    js_front.set_faq_JS_front(userInput);
+                }
                 break;
             case 7:
+                i = 1;
+                lastIndex = golang.get_chatting_Golang().size() - 1;
+                System.out.println("\nWelcome to the Golang chat! Enjoy!\n");
+                result = String.join("", golang.get_chatting_Golang());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->Golang->Golang-CHATTING : " + golang.get_chatting_Golang().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->Golang->Golang-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->Golang->Golang-CHATTING : \"" + userInput + "\"");
+                    }
+                    golang.set_chatting_Golang("\n");
+                    golang.set_chatting_Golang(userInput);
+                }
                 break;
             case 8:
+                i = 1;
+                lastIndex = golang.get_faq_Golang().size() - 1;
+                System.out.println("\nWelcome to the Golang FAQ! Enjoy!\n");
+                result = String.join("", golang.get_faq_Golang());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->Golang->Golang-FAQ : " + golang.get_faq_Golang().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->Golang->Golang-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->Golang->Golang-FAQ : \"" + userInput + "\"");
+                    }
+                    golang.set_faq_Golang("\n");
+                    golang.set_faq_Golang(userInput);
+                }
                 break;
             case 9:
+                i = 1;
+                lastIndex = js_back.get_chatting_JS_back().size() - 1;
+                System.out.println("\nWelcome to the JS_back chat! Enjoy!\n");
+                result = String.join("", js_back.get_chatting_JS_back());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->JS_back->JS_back-CHATTING : " + js_back.get_chatting_JS_back().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->JS_back->JS_back-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->JS_back->JS_back-CHATTING : \"" + userInput + "\"");
+                    }
+                    js_back.set_chatting_JS_back("\n");
+                    js_back.set_chatting_JS_back(userInput);
+                }
                 break;
             case 10:
+                i = 1;
+                lastIndex = js_back.get_faq_JS_back().size() - 1;
+                System.out.println("\nWelcome to the JS_back FAQ! Enjoy!\n");
+                result = String.join("", js_back.get_faq_JS_back());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->JS_back->JS_back-FAQ : " + js_back.get_faq_JS_back().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->JS_back->JS_back-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->JS_back->JS_back-FAQ : \"" + userInput + "\"");
+                    }
+                    js_back.set_faq_JS_back("\n");
+                    js_back.set_faq_JS_back(userInput);
+                }
                 break;
             case 11:
+                i = 1;
+                lastIndex = my_sql.get_chatting_MySQL().size() - 1;
+                System.out.println("\nWelcome to the MySQL chat! Enjoy!\n");
+                result = String.join("", my_sql.get_chatting_MySQL());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->MySQL->MySQL-CHATTING : " + my_sql.get_chatting_MySQL().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->MySQL->MySQL-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->MySQL->MySQL-CHATTING : \"" + userInput + "\"");
+                    }
+                    my_sql.set_chatting_MySQL("\n");
+                    my_sql.set_chatting_MySQL(userInput);
+                }
                 break;
             case 12:
+                i = 1;
+                lastIndex = my_sql.get_faq_MySQL().size() - 1;
+                System.out.println("\nWelcome to the MySQL FAQ! Enjoy!\n");
+                result = String.join("", my_sql.get_faq_MySQL());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->MySQL->MySQL-FAQ : " + my_sql.get_faq_MySQL().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->MySQL->MySQL-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->MySQL->MySQL-FAQ : \"" + userInput + "\"");
+                    }
+                    my_sql.set_faq_MySQL("\n");
+                    my_sql.set_faq_MySQL(userInput);
+                }
                 break;
             case 13:
+                i = 1;
+                lastIndex = php.get_chatting_PHP().size() - 1;
+                System.out.println("\nWelcome to the PHP chat! Enjoy!\n");
+                result = String.join("", php.get_chatting_PHP());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->PHP->PHP-CHATTING : " + php.get_chatting_PHP().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->PHP->PHP-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->PHP->PHP-CHATTING : \"" + userInput + "\"");
+                    }
+                    php.set_chatting_PHP("\n");
+                    php.set_chatting_PHP(userInput);
+                }
                 break;
             case 14:
+                i = 1;
+                lastIndex = php.get_faq_PHP().size() - 1;
+                System.out.println("\nWelcome to the PHP FAQ! Enjoy!\n");
+                result = String.join("", php.get_faq_PHP());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in WEB-SERVER->BACK-END->PHP->PHP-FAQ : " + php.get_faq_PHP().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in WEB-SERVER->BACK-END->PHP->PHP-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in WEB-SERVER->BACK-END->PHP->PHP-FAQ : \"" + userInput + "\"");
+                    }
+                    php.set_faq_PHP("\n");
+                    php.set_faq_PHP(userInput);
+                }
                 break;
         }
     }
@@ -332,14 +617,108 @@ public class Home {
         Saloon cpp_faq = new Saloon("CPP-FAQ");
         Saloon java_chatting = new Saloon("JAVA-Chatting");
         Saloon java_faq = new Saloon("JAVA-FAQ");
+        //<--------SET UP FOR LOGS------------------------------->
+        LogManager.getLogManager().reset();
+        Logger rootLogger = LogManager.getLogManager().getLogger("");
+        rootLogger.addHandler(new MyLogHandler());
+        //<------------------------------------------------------>
         switch (choice) {
             case 1:
+                int i = 1;
+                int lastIndex = cpp_chatting.get_chatting_Cpp().size() - 1;
+                System.out.println("\nWelcome to the C++ chat! Enjoy!\n");
+                String result = String.join("", cpp_chatting.get_chatting_Cpp());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in POO->C++->C++-CHATTING : " + cpp_chatting.get_chatting_Cpp().get(i));
+                    i++;
+                    i++;
+                }
+                Scanner scanner = new Scanner(System.in);
+                String userInput;
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in POO->C++->C++-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in POO->C++->C++-CHATTING : \"" + userInput + "\"");
+                    }
+                    cpp_chatting.set_chatting_Cpp("\n");
+                    cpp_chatting.set_chatting_Cpp(userInput);
+                }
                 break;
             case 2:
+                i = 1;
+                lastIndex = cpp_faq.get_faq_Cpp().size() - 1;
+                System.out.println("\nWelcome to the C++ FAQ! Enjoy!\n");
+                result = String.join("", cpp_faq.get_faq_Cpp());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in POO->C++->C++-FAQ : " + cpp_faq.get_faq_Cpp().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in POO->C++->C++-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in POO->C++->C++-FAQ : \"" + userInput + "\"");
+                    }
+                    cpp_faq.set_faq_Cpp("\n");
+                    cpp_faq.set_faq_Cpp(userInput);
+                }
                 break;
             case 3:
+                i = 1;
+                lastIndex = java_chatting.get_chatting_java().size() - 1;
+                System.out.println("\nWelcome to the Java chat! Enjoy!\n");
+                result = String.join("", java_chatting.get_chatting_java());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in POO->Java->Java-CHATTING : " + java_chatting.get_chatting_java().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in POO->Java->Java-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in POO->Java->Java-CHATTING : \"" + userInput + "\"");
+                    }
+                    java_chatting.set_chatting_java("\n");
+                    java_chatting.set_chatting_java(userInput);
+                }
                 break;
             case 4:
+                i = 1;
+                lastIndex = java_faq.get_faq_java().size() - 1;
+                System.out.println("\nWelcome to the Java FAQ! Enjoy!\n");
+                result = String.join("", java_faq.get_faq_java());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in POO->Java->Java-FAQ : " + java_faq.get_faq_java().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in POO->Java->Java-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in POO->Java->Java-FAQ : \"" + userInput + "\"");
+                    }
+                    java_faq.set_faq_java("\n");
+                    java_faq.set_faq_java(userInput);
+                }
                 break;
         }
     }
@@ -355,14 +734,156 @@ public class Home {
         Saloon python_faq = new Saloon("Python-FAQ");
         Saloon c_chatting = new Saloon("C-Chatting");
         Saloon c_faq = new Saloon("C-FAQ");
+        //<--------SET UP FOR LOGS------------------------------->
+        LogManager.getLogManager().reset();
+        Logger rootLogger = LogManager.getLogManager().getLogger("");
+        rootLogger.addHandler(new MyLogHandler());
+        //<------------------------------------------------------>
         switch (choice) {
             case 1:
+                int i = 1;
+                int lastIndex = c_sharp_chatting.get_chatting_C_sharp().size() - 1;
+                System.out.println("\nWelcome to the C# chat! Enjoy!\n");
+                String result = String.join("", c_sharp_chatting.get_chatting_C_sharp());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in Application->C#->C#-CHATTING : " + c_sharp_chatting.get_chatting_C_sharp().get(i));
+                    i++;
+                    i++;
+                }
+                Scanner scanner = new Scanner(System.in);
+                String userInput;
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in Application->C#->C#-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in Application->C#->C#-CHATTING : \"" + userInput + "\"");
+                    }
+                    c_sharp_chatting.set_chatting_C_sharp("\n");
+                    c_sharp_chatting.set_chatting_C_sharp(userInput);
+                }
                 break;
             case 2:
+                i = 1;
+                lastIndex = c_sharp_faq.get_faq_C_sharp().size() - 1;
+                System.out.println("\nWelcome to the C# FAQ! Enjoy!\n");
+                result = String.join("", c_sharp_faq.get_faq_C_sharp());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in Application->C#->C#-FAQ : " + c_sharp_faq.get_faq_C_sharp().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in Application->C#->C#-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in Application->C#->C#-FAQ : \"" + userInput + "\"");
+                    }
+                    c_sharp_faq.set_faq_C_sharp("\n");
+                    c_sharp_faq.set_faq_C_sharp(userInput);
+                }
                 break;
             case 3:
+                i = 1;
+                lastIndex = python_chatting.get_chatting_python().size() - 1;
+                System.out.println("\nWelcome to the Python chat! Enjoy!\n");
+                result = String.join("", python_chatting.get_chatting_python());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in Application->Python->Python-CHATTING : " + python_chatting.get_chatting_python().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in Application->Python->Python-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in Application->Python->Python-CHATTING : \"" + userInput + "\"");
+                    }
+                    python_chatting.set_chatting_python("\n");
+                    python_chatting.set_chatting_python(userInput);
+                }
                 break;
             case 4:
+                i = 1;
+                lastIndex = python_faq.get_faq_python().size() - 1;
+                System.out.println("\nWelcome to the Python FAQ! Enjoy!\n");
+                result = String.join("", python_faq.get_faq_python());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in Application->Python->Python-FAQ : " + python_faq.get_faq_python().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in Application->Python->Python-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in Application->Python->Python-FAQ : \"" + userInput + "\"");
+                    }
+                    python_faq.set_faq_python("\n");
+                    python_faq.set_faq_python(userInput);
+                }
+                break;
+            case 5:
+                i = 1;
+                lastIndex = c_chatting.get_chatting_C().size() - 1;
+                System.out.println("\nWelcome to the C chat! Enjoy!\n");
+                result = String.join("", c_chatting.get_chatting_C());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in Application->C->C-CHATTING : " + c_chatting.get_chatting_C().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in Application->C->C-CHATTING : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in Application->C->C-CHATTING : \"" + userInput + "\"");
+                    }
+                    c_chatting.set_chatting_C("\n");
+                    c_chatting.set_chatting_C(userInput);
+                }
+                break;
+            case 6:
+                i = 1;
+                lastIndex = c_faq.get_faq_C().size() - 1;
+                System.out.println("\nWelcome to the C FAQ! Enjoy!\n");
+                result = String.join("", c_faq.get_faq_C());
+                System.out.println(result);
+                while (i <= lastIndex ){
+                    rootLogger.info("Message in Application->C->C-FAQ : " + c_faq.get_faq_C().get(i));
+                    i++;
+                    i++;
+                }
+                scanner = new Scanner(System.in);
+                while (!(userInput = scanner.nextLine()).equals("exit")) {
+                    User.commands(userInput);
+                    String first_char = String.valueOf(userInput.charAt(0));
+                    if (! (first_char.equals("!"))) {
+                        rootLogger.info("Message in Application->C->C-FAQ : \"" + userInput + "\"");
+                    }else {
+                        rootLogger.info("Command in Application->C->C-FAQ : \"" + userInput + "\"");
+                    }
+                    c_faq.set_faq_C("\n");
+                    c_faq.set_faq_C(userInput);
+                }
                 break;
         }
     }
