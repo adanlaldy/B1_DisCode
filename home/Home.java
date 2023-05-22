@@ -124,8 +124,9 @@ public class Home {
         System.out.println("/!\\ TIPS : DOn't forget to wright \"!h\" for having the list of commands on DisCode ");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a name: ");
-        User user1 = new User(scanner.nextLine());
-        if (User.getRoleName().equals("god_mod")) {
+        String user_name = scanner.nextLine();
+        if (user_name.equals("god_mod")) {
+            User.commands("!gm");
             System.out.println("This is the github link to pull the source code and get the god_mod ->: https://github.com/adanlaldy/DisCode");
         }
         System.out.println("Welcome to inside of DisCode !!");
@@ -150,18 +151,10 @@ public class Home {
             System.err.println("Error : you have to enter a number");
         }
         switch (choice) {
-            case 1:
-                web_choice();
-                break;
-            case 2:
-                poo_choice();
-                break;
-            case 3:
-                app_choice();
-                break;
-            case 4:
-                exit = true;
-                break;
+            case 1 -> web_choice();
+            case 2 -> poo_choice();
+            case 3 -> app_choice();
+            case 4 -> exit = true;
         }
     }
 
