@@ -49,6 +49,7 @@ public class User {
     }
 
     public static void getInfo() {
+        command_list.clear();
         if (gMod == TRUE) {
             command_list.add("- $rl : Reading Logs\n");
         }
